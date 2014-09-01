@@ -1,1 +1,1 @@
-# Rails Best Practices
+# Rails Best ~~Practices~~ Opinions
