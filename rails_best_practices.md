@@ -7,9 +7,11 @@
   * Business Logic on Model
   * Add model virtual attribute
   * User model callback
-  * Overuse route customizations
 
 * ## Law of Demeter
+
+* ## Overuse route customizations
+
 * ## Always add DB index
 
 
