@@ -4,7 +4,7 @@
   
   * Use model association
 
-    ** Bad Smell **
+    **Bad Smell**
     ```ruby
     class QuestionsController < ApplicationController
       def create
@@ -15,7 +15,7 @@
     end
     ```
 
-    ** Refactor **
+    **Refactor**
     ```ruby
     class QuestionsController < ApplicationController
       def create
