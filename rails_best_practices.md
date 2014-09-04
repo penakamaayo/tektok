@@ -67,57 +67,55 @@
     end
     ```
 
-
-* "Business Logic" on Model
-  
-  **Bad Smell**
-  ```ruby
-  class PostsController < ApplicationController
-    def publish
-      @post = Post.find(params[:id])
-      @post.update_attribute(:is_published, true)
-      @post.approved_by = current_user
-      if @post.created_at > Time.now - 7.days
-        @post.popular = 100
-      else
-        @post.popular = 0
-      end
-
-      redirect_to post_url(@post)
-    end
-  end
-  ```
-
-  **Refactor**
-  ```ruby
-  class Post < ActiveRecord::Base
-    def publish
-      self.is_published = true
-      self.approved_by = current_user
-      if self.created_at > Time.now - 7.days
-        self.popular = 100
-      else
-        self.popular = 0
-      end
-    end
-  end
-  ```
-
-  ```ruby
-  class PostsController < ApplicationController
-    def publish
-      @post = Post.find(params[:id])
-      @post.publish
-
-      redirect_to post_url(@post)
-    end
-  end
-  ```
-
-
   * User model callback
   * Add model virtual attribute
 
+
+  * "Business Logic" on Model
+    
+    **Bad Smell**
+    ```ruby
+    class PostsController < ApplicationController
+      def publish
+        @post = Post.find(params[:id])
+        @post.update_attribute(:is_published, true)
+        @post.approved_by = current_user
+        if @post.created_at > Time.now - 7.days
+          @post.popular = 100
+        else
+          @post.popular = 0
+        end
+
+        redirect_to post_url(@post)
+      end
+    end
+    ```
+
+    **Refactor**
+    ```ruby
+    class Post < ActiveRecord::Base
+      def publish
+        self.is_published = true
+        self.approved_by = current_user
+        if self.created_at > Time.now - 7.days
+          self.popular = 100
+        else
+          self.popular = 0
+        end
+      end
+    end
+    ```
+
+    ```ruby
+    class PostsController < ApplicationController
+      def publish
+        @post = Post.find(params[:id])
+        @post.publish
+
+        redirect_to post_url(@post)
+      end
+    end
+    ```
 
 * ## Law of Demeter
    > *an entity should only talk to its close friends*
