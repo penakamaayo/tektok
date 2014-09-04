@@ -4,7 +4,7 @@
   
   * Use model association
 
-    **Bad Smell**
+    **Code smell**
     ```ruby
     class QuestionsController < ApplicationController
       def create
@@ -33,7 +33,7 @@
 
   * Scope it out
 
-    **Bad Smell**
+    **Code smell**
     ```ruby
     class PostsController < ApplicationController
       def index
@@ -73,7 +73,7 @@
 
   * "Business Logic" on Model
     
-    **Bad Smell**
+    **Code smell**
     ```ruby
     class PostsController < ApplicationController
       def publish
@@ -120,7 +120,7 @@
 * ## Law of Demeter
    > *an entity should only talk to its close friends*
 
-  **Bad Smell**
+  **Code smell**
   ```ruby
   class Invoice < ActiveRecord::Base
     belongs_to :user
@@ -156,7 +156,7 @@
 
 * ## Overuse route customizations
   
-  **Bad Smell**
+  **Code smell**
   ```ruby
   resources :questions, :member => { :answers => :get,
                                    :create_answers => :post,
