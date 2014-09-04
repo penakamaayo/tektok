@@ -173,7 +173,9 @@
   end
   ```
 
-* ## Always add DB index
+* ##Extract into Module
+
+* ##Always add DB index
   
 
 * ##Extras
