@@ -204,4 +204,4 @@
     ```
 
   * ##remove trailing whitespace
-  * ##Keep code struture in models consistent
+  * **Keep code struture in models consistent**
