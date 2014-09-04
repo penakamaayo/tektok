@@ -202,6 +202,6 @@
 
     end
     ```
-    
-  * ## remove trailing whitespace
-  * ## Keep code struture in models consistent
+
+  * ##remove trailing whitespace
+  * ##Keep code struture in models consistent
