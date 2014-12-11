@@ -123,9 +123,9 @@ For multiple subdomains: Google doesn't support __wildcard__ redirect URIs --, (
     * receives the request, params from google
     * created our own controller to validate request
   * Pass the access token to another controller to search the user
-  * If user exist, Authenticate user.
+  * If user exist, Authenticate user, else.. meh :3
 
-  * Voila! #Merged. :)
+  * #Merged. :)
 
 
 ### Resources
