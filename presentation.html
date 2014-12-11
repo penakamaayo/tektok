@@ -1,0 +1,241 @@
+<html>
+  <head>
+    <title>Slides</title>
+    <link href="../stylesheets/slides.css" media="screen" rel="stylesheet" charset="utf-8" type="text/css" />
+    <link href="../stylesheets/compiled/styles.css" media="screen" rel="stylesheet" charset="utf-8" type="text/css" />
+    <script src="../javascripts/jquery-1.3.2.js" type="text/javascript"></script>
+    <script src="../javascripts/jquery.easing.js" type="text/javascript"></script>
+    <script src="../javascripts/jquery.hash-changed.js" type="text/javascript"></script>
+    <script src="../javascripts/slides.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="slides">
+      <div id="track">
+        
+          <div class="">
+            <div id="slide-0" class="content">
+              <h1>OmniAuth</h1><blockquote><p>Future proof  your authentication..</p></blockquote>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-1" class="content">
+              <h1>Authentication</h1><blockquote><p>Confirmation of identity and privileges</p></blockquote>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-2" class="content">
+              <h1>Authentication == identity?</h1>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-3" class="content">
+              <h1>No =&gt; I can have multiple ways of authentications, but I only have one identity(during the day at least.. :D)</h1>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-4" class="content">
+              <h1>Omniauth is a simple ruby gem that let your users authenticate through a growing list of webservices</h1>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-5" class="content">
+              <h1>Strategies:</h1><ul>
+<li>Facebook</li>
+<li>Twitter</li>
+<li><strong>Google</strong></li>
+<li>LinkedIn</li>
+<li>Github</li>
+<li>.... (you could also create your own strategy)</li>
+</ul>
+            </div>
+          </div>
+        
+          <div class="
+">
+            <div id="slide-6" class="content">
+              <h1>Google oauth strategy</h1><blockquote><p>Strategy to authenticate with Google via OAuth2 in OmniAuth.</p></blockquote>
+            </div>
+          </div>
+        
+          <div class="
+">
+            <div id="slide-7" class="content">
+              <h1>Google API Setup</h1><ul>
+<li>Go to <a href="https://console.developers.google.com">https://console.developers.google.com</a>
+</li>
+<li>Create/Select your project.</li>
+<li>Click 'APIs &amp; auth'</li>
+<li>Make sure "Contacts API" and "Google+ API" are on.</li>
+<li>Go to Consent Screen, and provide an 'EMAIL ADDRESS' and a 'PRODUCT NAME'</li>
+<li>Go to Credentials, create and note the Client ID and the Client Secret.</li>
+</ul>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-8" class="content">
+              <h1>Rails Setup</h1>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-9" class="content">
+              <p>Add to your <code>Gemfile</code>:</p><div class="highlight ruby code highlight"><pre><span class="n">gem</span> <span class="s1">'omniauth-google-oauth2'</span><span class="p">,</span> <span class="s1">'~&gt; 0.2.6'</span>
+</pre></div>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-10" class="content">
+              <p>Define your application id and secret in "config/initializers/devise.rb"</p><div class="highlight ruby code highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">omniauth</span> <span class="ss">:google_oauth2</span><span class="p">,</span> <span class="s1">'APP_ID'</span><span class="p">,</span> <span class="s1">'APP_SECRET'</span><span class="p">,</span> <span class="p">{</span> <span class="p">}</span>
+</pre></div>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-11" class="content">
+              <p>Then add the following to 'config/routes.rb' so the callback routes are defined.</p><div class="highlight ruby code highlight"><pre><span class="n">devise_for</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:controllers</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:omniauth_callbacks</span> <span class="o">=&gt;</span> <span class="s2">"users/omniauth_callbacks"</span> <span class="p">}</span>
+</pre></div>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-12" class="content">
+              <p>Make sure your model is omniauthable. Generally this is "/app/models/user.rb"</p><div class="highlight ruby code highlight"><pre><span class="n">devise</span> <span class="ss">:omniauthable</span><span class="p">,</span> <span class="ss">:omniauth_providers</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="ss">:google_oauth2</span><span class="o">]</span>
+</pre></div>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-13" class="content">
+              <p>Then make sure your callbacks controller is setup.</p><div class="highlight ruby code highlight"><pre><span class="k">class</span> <span class="nc">Users</span><span class="o">::</span><span class="no">OmniauthCallbacksController</span> <span class="o">&lt;</span> <span class="no">Devise</span><span class="o">::</span><span class="no">OmniauthCallbacksController</span>
+  <span class="k">def</span> <span class="nf">google_oauth2</span>
+
+  <span class="c1"># You need to implement the method below in your model (e.g. app/models/user.rb)</span>
+  <span class="vi">@user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">find_for_google_oauth2</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="o">[</span><span class="s2">"omniauth.auth"</span><span class="o">]</span><span class="p">,</span> <span class="n">current_user</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="vi">@user</span><span class="o">.</span><span class="n">persisted?</span>
+    <span class="n">flash</span><span class="o">[</span><span class="ss">:notice</span><span class="o">]</span> <span class="o">=</span> <span class="no">I18n</span><span class="o">.</span><span class="n">t</span> <span class="s2">"devise.omniauth_callbacks.success"</span><span class="p">,</span> <span class="ss">:kind</span> <span class="o">=&gt;</span> <span class="s2">"Google"</span>
+    <span class="n">sign_in_and_redirect</span> <span class="vi">@user</span><span class="p">,</span> <span class="ss">:event</span> <span class="o">=&gt;</span> <span class="ss">:authentication</span>
+  <span class="k">else</span>
+    <span class="n">session</span><span class="o">[</span><span class="s2">"devise.google_data"</span><span class="o">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">env</span><span class="o">[</span><span class="s2">"omniauth.auth"</span><span class="o">]</span>
+    <span class="n">redirect_to</span> <span class="n">new_user_registration_url</span>
+  <span class="k">end</span>
+
+
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+            </div>
+          </div>
+        
+          <div class="
+
+and bind to or create the user">
+            <div id="slide-14" class="content">
+              <div class="highlight ruby code highlight"><pre><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">find_for_google_oauth2</span><span class="p">(</span><span class="n">access_token</span><span class="p">,</span> <span class="n">signed_in_resource</span><span class="o">=</span><span class="kp">nil</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">access_token</span><span class="o">.</span><span class="n">info</span>
+<span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">:email</span> <span class="o">=&gt;</span> <span class="n">data</span><span class="o">[</span><span class="s2">"email"</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">first</span>
+
+<span class="c1"># Uncomment the section below if you want users to be created if they don't exist</span>
+<span class="c1"># unless user</span>
+<span class="c1">#     user = User.create(name: data["name"],</span>
+<span class="c1">#        email: data["email"],</span>
+<span class="c1">#        password: Devise.friendly_token[0,20]</span>
+<span class="c1">#     )</span>
+<span class="c1"># end</span>
+<span class="n">user</span>
+
+
+<span class="k">end</span>
+</pre></div>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-15" class="content">
+              <p>For your views you can login using:</p><div class="highlight ruby code highlight"><pre><span class="o">=</span> <span class="n">link_to</span> <span class="s1">'Sign in with Google'</span><span class="p">,</span> <span class="n">user_omniauth_authorize_path</span> <span class="ss">:google_oauth2</span>
+</pre></div>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-16" class="content">
+              <h1>Limitation</h1><p>For multiple subdomains: Google doesn't support <strong>wildcard</strong> redirect URIs --, (eg.  <a href="http://*.example.com">http://*.example.com</a>)</p>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-17" class="content">
+              <h1>Quick fix</h1>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-18" class="content">
+              <ul>
+<li>
+<h3>Created our own callback controller</h3>
+
+<ul>
+<li><h4>receives the request, params from google</h4></li>
+<li><h4>created our own controller to validate request</h4></li>
+</ul>
+</li>
+</ul>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-19" class="content">
+              <ul>
+<li>
+<h3>Pass the access token to another controller to search the user</h3>
+
+<ul>
+<li><h4>If user exist, Authenticate user.</h4></li>
+<li><h4>else.. meh :3</h4></li>
+</ul>
+</li>
+</ul>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-20" class="content">
+              <h2>#Merged. :)</h2>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-21" class="content">
+              <h1>Thanks!</h1><p>@penakanoobs</p>
+            </div>
+          </div>
+        
+          <div class="">
+            <div id="slide-22" class="content">
+              <h2>Resources</h2><ul>
+<li><a href="https://github.com/zquestz/omniauth-google-oauth2">https://github.com/zquestz/omniauth-google-oauth2</a></li>
+<li><a href="https://developers.google.com/accounts/docs/OAuth2">https://developers.google.com/accounts/docs/OAuth2</a></li>
+<li><a href="https://developers.google.com/oauthplayground/">https://developers.google.com/oauthplayground/</a></li>
+<li><a href="http://intridea.github.io/omniauth/">http://intridea.github.io/omniauth/</a></li>
+<li><a href="https://github.com/intridea/omniauth/wiki/Strategy-Contribution-Guide/">https://github.com/intridea/omniauth/wiki/Strategy-Contribution-Guide</a></li>
+<li><a href="http://www.slideshare.net/kbal11/omniauth%0Ahttp://stackoverflow.com/questions/21321298/ruby-on-rails-devise-oauth-facebook-omniauthstrategiesoauth2callbackerror/21321946#21321946">http://www.slideshare.net/kbal11/omniauth
+http://stackoverflow.com/questions/21321298/ruby-on-rails-devise-oauth-facebook-omniauthstrategiesoauth2callbackerror/21321946#21321946</a></li>
+<li><a href="https://github.com/nakajima/slidedown">https://github.com/nakajima/slidedown</a></li>
+<li><a href="https://www.hurl.it/">https://www.hurl.it/</a></li>
+</ul>
+            </div>
+          </div>
+        
+      </div>
+    </div>
+  </body>
+</html>

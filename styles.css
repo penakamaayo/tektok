@@ -1,0 +1,37 @@
+body {
+  background-color: #222222;
+  color: #E1E2E3;
+  font-size: 200%; }
+
+a {
+  color: #CC3A00; }
+
+.code {
+  font-size: 70%;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0 0 1em #bbbbbb;
+  margin: 1em;
+  padding: 1em;
+  color: #646432; }
+
+.ruby {
+  font-size: 70%; }
+
+h1, h2, h3, h4 {
+  text-shadow: #CC3A00 0 0 10px;
+  color: #FFFFFF;
+  margin-bottom: 0.2em;
+  margin-top: 0.2em; }
+
+.green {
+  color: green; }
+
+.red {
+  color: red; }
+
+img {
+  background-color: #d9d9d9;
+  margin: 2em;
+  padding: 5px;
+  -webkit-box-shadow: 0 0 1em #bbbbbb; }
