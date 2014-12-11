@@ -45,7 +45,7 @@
 Add to your `Gemfile`:
 
 ```ruby
-gem "omniauth-google-oauth2", '~>99999'
+gem 'omniauth-google-oauth2', '~> 0.2.6'
 ```
 
 
