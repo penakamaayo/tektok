@@ -2,7 +2,7 @@
 
 ### What we'll Cover
 * WTH is meteor?
-* Live coding
+* Sample App
 * Learning resources
 
 
@@ -86,7 +86,7 @@ meteor add package-name
     * Files with deeper paths are loaded next
     * Files are then loaded in alphabetical order of the entire path
 
-## Let's start coding!
+## (http://contacts.meteor.com/)[Demo!!]
 
 ##
 ##
