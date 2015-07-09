@@ -86,7 +86,7 @@ meteor add package-name
     * Files with deeper paths are loaded next
     * Files are then loaded in alphabetical order of the entire path
 
-## (http://contacts.meteor.com/)[Demo!!]
+## [Demo!!](http://contacts.meteor.com/)
 
 ##
 ##
