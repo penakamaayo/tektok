@@ -1,10 +1,8 @@
-The "Meteor Platform" is a recommended stack, a standard set of core packages that are designed to work well together.
-
 # Meteor
 
 ### What we'll Cover
 * WTH is meteor?
-* Live coding
+* Sample App
 * Learning resources
 
 
@@ -81,14 +79,14 @@ meteor add package-name
 * /client - only runs on the client
 * /lib  - both client & server
 * /public - public assets
-* ### Load order
+* **Load order**
   * HTML template files are always loaded before everything else
     * Files beginning with main.* are loaded last
     * Files inside any lib/ directory are loaded next
     * Files with deeper paths are loaded next
     * Files are then loaded in alphabetical order of the entire path
 
-## Let's start coding!
+## [Demo!!](http://resolutions-demo.meteor.com/)
 
 ##
 ##
@@ -102,7 +100,7 @@ meteor add package-name
 
 
 ###### So, is Meteor today's Ruby on Rails?
-* ## Ruby on Rails is today's Ruby on Rails.
+### Ruby on Rails is today's Ruby on Rails.
 
 
 
